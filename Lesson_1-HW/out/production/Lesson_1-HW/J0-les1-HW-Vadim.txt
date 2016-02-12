@@ -1,0 +1,189 @@
+/**
+ * Created by Abilis on 11.02.2016.
+ */
+public class MainClass {
+
+    public static void main(String[] args) {
+
+        //1. Нужно создать массив mas[], состоящий из элементов 0 1 0 1 0 1 0 1 0 1
+        int[] mas = new int[10];
+
+        for (int i = 0; i < mas.length; i++ ) {
+            if ((i % 2) == 0) { //если элемент массива четный - суем туда 0
+                mas[i] = 0;
+            }
+            else {
+                mas[i] = 1; // если нечетный - единицу
+            }
+        }
+
+        drowArrAndLn(mas); //ниже создан метод отображения элементов массива и перевода строки. Строка 100.
+
+
+        //2. Полученный массив нужно инвертировать
+        for (int i = 0; i < mas.length; i++) {
+            if (mas[i] == 0) {
+                mas[i] = 1;
+            }
+            else {      //Предполагается, что в исходном массиве будут только 0 и 1
+                mas[i] = 0;
+            }
+        }
+
+        drowArrAndLn(mas); //смотрим, что получилось
+
+
+        //3. С помощью цикла нужно создать массив 1 4 7 10 13 16 19 22
+        int arr3[] = new int[8];
+
+        int a = 1;
+
+        for (int i = 0; i < arr3.length; i++) {
+            arr3[i] = a;
+            a += 3;
+        }
+
+        drowArrAndLn(arr3); //снова смотрим, что создалось
+
+        //4. Нужно написать методы для сложения, вычитания, деления и умножения двух чисел
+        //109 - 134 строки
+        //
+        //5. Выполнить расчет выражения ((2 + 3) * 5) / 2
+
+        double res5 =  getDiv(getMult(getSum(2, 3), 5), 2);
+        System.out.println(res5);
+
+        //6. Нужно задать массив и найти в нем минимальный и максимальный элементы
+
+        int arr6[] = new int[50];
+
+        //заполняем массив случайными элементами
+        for (int i = 0; i < arr6.length; i++) {
+            arr6[i] =(int)(Math.random() * 101); //будет случайное целое число от 0 до 100
+        }
+
+        drowArrAndLn(arr6); // Рисуем массив в строку
+
+        //передаем в метод сам массив и максимально возможное значение
+        System.out.println("Минимальный элемент массива: " + getMinFromArr(arr6, 100));
+
+        //передаем в метод сам массив и минимально возможное значение
+        System.out.println("Максимальный элемент массива: " + getMaxFromArr(arr6, 0));
+
+        /*Вторая часть. Нужно написать методы, выполняющие арифметические операции. На вход подается 2 числа.
+        Методы должны выдавать результат и информацию о то, какая операция была выполнена.
+        И нужно что-нибудь решить с помощью написанных методов
+         */
+
+        double a7 = 100;
+        double b7 = 60;
+
+        double x1 = getSum2(a7, b7);
+        double x2 = getDiv2(a7, b7);
+        double x3 = getDif2(a7, b7);
+        double x4 = getMult2(a7, b7);
+
+        System.out.println();
+        getMult2(getSum2((double)(1), (double)(4)), (double)(2));
+        System.out.println();
+
+        double a8 = 1;
+        double b8 = 3;
+        double c8 = 2;
+        double d8 = 4;
+        double e8 = 2;
+
+        getDiv2 (getSum2( getSum2(a8, b8), getMult2(c8, d8)) , e8 );
+
+    }
+
+    public static void drowArrAndLn(int arr[]) { //Выводим содержимое массива arr[] через пробел. В конце переводим строку
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static double getSum (double a, double b) {
+        return a + b;
+    }
+
+    public static double getDif (double a, double b) {
+        return a - b;
+    }
+
+    public static double getMult (double a, double b) {
+        return a * b;
+    }
+
+    public static double getDiv (double a, double b) {
+
+        if (b == 0) {
+            System.out.println("Ошибка деления на нуль");
+            return 0; /* Здесь хотелось бы передать из метода строковое выражение "Ошибка деления на нуль",
+            не выводя само зачения на экран. Т.е. сделать return строки. Но тип возвращаемого значения уже указан как
+            double. Если изменить на String, то тогда придется преобразовывать выражение a / b в String, делать return
+            и на выходе преобразовывать обратно в double. Это выглядит несколько громоздко, нет ли более простого пути?
+            Или эта проблема высосана из пальца? Как в реальных проектах с такими вещами поступают? */
+        }
+        else {
+        return a / b;
+         }
+    }
+
+    public static int getMinFromArr(int arr[], int max) {
+
+        int min = max; //инициализируем минимальное значение. Начальное значение равно переданному max
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < min) { //если i-ый элемент меньше max
+                min = arr[i]; //то он будет новым минимальным элементом в массиве
+            }
+        }
+        return min;
+
+    }
+
+    public static int getMaxFromArr(int arr[], int min) {
+
+        int max = min; //инициализируем максимальное значение. Начальное значение равно переданному min
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) { //если i-ый элемент больше max
+                max = arr[i];   //то он будет новым максимальным элеметом в массиве
+            }
+        }
+        return max;
+    }
+
+    public static double getSum2 (double a, double b) {
+        System.out.println("Сложили числа " + a + " и " + b + ". Получилось " + (a + b));
+        return (a + b);
+    }
+
+    public static double getDif2 (double a, double b) {
+        System.out.println("Вычли " + b + " из " + a + ". Получилось " + (a - b));
+        return (a - b);
+    }
+
+    public static double getMult2 (double a, double b) {
+        System.out.println("Перемножили числа " + a + " и " + b + ". Получилось " + (a * b));
+        return (a * b);
+    }
+
+    public static double getDiv2 (double a, double b) {
+
+        if (b == 0) {
+            System.out.println("Ошибка деления на нуль");
+        return 0;
+        }
+        else {
+            System.out.println("Разделили " + a + " на " + b + ". Получилось " + (a / b));
+            return (a / b);
+        }
+    }
+
+
+}
