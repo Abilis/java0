@@ -5,7 +5,7 @@ public class MainClass {
 
     public static void main(String[] args) {
 
-        int arr[] = new int[10]; //Создаем пустой массив с 10 элементами
+        int arr[] = new int[11]; //Создаем пустой массив с 10 элементами
 
         for (int i = 0; i < arr.length; i++) { //Заполняем массив натуральными числами
             arr[i] = i + 1;
