@@ -66,6 +66,6 @@ public class MainClass {
         System.out.println("Возраст первого тестового сотрудника: " + empl1.getAge());
 
     }
-
+    
 
 }
