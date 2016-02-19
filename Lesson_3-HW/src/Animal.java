@@ -25,23 +25,67 @@ public abstract class Animal {
 
     public void run100M() {
 
+
+
         this.stamina = this.stamina - stamMinus;
-        System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
-                            stamMinus + "%");
-    }
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
+                                 stamMinus + "%");
+            }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+            }
+
+        }
+
 
     public void climbOnHill() {
 
         this.stamina = this.stamina - stamMinus;
-        System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
-                            stamMinus + "%");
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
 
     }
 
     public void swimARiver() {
+
         this.stamina = this.stamina - stamMinus;
-        System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
-                stamMinus + "%");
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    public void makeASound() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда издал звук приветствия " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
     }
 
 

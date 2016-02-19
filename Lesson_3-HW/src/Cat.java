@@ -13,10 +13,17 @@ public class Cat extends Animal {
     public void swimARiver() {
 
         this.stamina = this.stamina - stamMinusMany;
-        System.out.println(this.specie + " " + this.name + " как и все коты не любит плавать." +
-                " Но задание есть задание. Поэтому, потеряв  " +
-                stamMinusMany + "% выносливости " + this.name + " все же выполнил задание!");
 
+        if (!staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " как и все коты не любит плавать." +
+                    " Но задание есть задание. Поэтому, потеряв  " +
+                    stamMinusMany + "% выносливости " + this.name + " все же выполнил задание!");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
     }
 
 

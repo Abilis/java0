@@ -12,11 +12,7 @@ public class MainClass {
     public static Human human = new Human("человек", "Джон Сноу", 100);
     public static Parrot parrot = new Parrot("попугай", "Иннокентий", 100);
 
-    private static String textOfVictory;
-
     public static void main(String[] args) {
-
-
 
         double dNumberOfGame = (Math.random() * 100) + 1;
         int numberOfGame = (int) dNumberOfGame;
@@ -27,27 +23,61 @@ public class MainClass {
         getInfoAboutAllAnimal();
 
         //начало цикла до условия победы
-        while ((textOfVictory = existWin()) == "Пока победителя нет, давайте помучаем участников еще раз!") {
-
-
+        while (existWin() == 0) {
 
             //генерация вызова одного случайного метода
-            int randNumber = (int)(Math.random() * 2) + 1; // генерируем случайное целое цисло от 1 до 3 (по числу методов)
+            int randNumber = (int) (Math.random() * 4) + 1; // генерируем случайное целое цисло от 1 до 4 (по числу методов)
 
             switch (randNumber) {
-                case 1: run100MAllAnimal(); // бег 100 метров
+                case 1:
+                    run100MAllAnimal(); // бег 100 метров
                     break;
-                case 2: climbOnHillAllAnimal(); //взобраться на холм
+                case 2:
+                    climbOnHillAllAnimal(); //взобраться на холм
                     break;
-                case 3: swimARiverAllAnimal(); //переплыть реку
+                case 3:
+                    swimARiverAllAnimal(); //переплыть реку
                     break;
+                case 4:
+                    makeASoundAllAnimal(); //издать звук
+                    break;
+
+
             }
 
-            System.out.println(textOfVictory);
+
             getInfoAboutAllAnimal(); // в конце итерации показываем состояние участников
 
 
+            switch (existWin()) {
 
+                case 1:
+                    System.out.println("Победил " + cat.specie + " " + cat.name + "!");
+                    break;
+                case 2:
+                    System.out.println("Победила " + fish.specie + " " + fish.name + "!");
+                    break;
+                case 3:
+                    System.out.println("Победила " + horse.specie + " " + horse.name + "!");
+                    break;
+                case 4:
+                    System.out.println("Победил " + human.specie + " " + human.name + "!");
+                    break;
+                case 5:
+                    System.out.println("Победил " + parrot.specie + " " + parrot.name + "!");
+                    break;
+                case 10:
+                    System.out.println("Все проиграли! На " + numberOfGame + " межвидовых играх" +
+                                        " \"Полоса препятствий\" нет победителя!");
+                    break;
+
+            }
+
+            try {
+                Thread.sleep(2000); //Задержка в 2 секунды в конце каждого цикла, чтобы можно было наблюдать прогресс
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
         } //конец цикла
 
 
@@ -99,32 +129,58 @@ public class MainClass {
         System.out.println();
     }
 
+    public static void makeASoundAllAnimal() {
 
-    public static String existWin() {
+        System.out.println("В этот раз всем участникам нужно что-нибудь прокричать!");
+        cat.makeASound();
+        fish.makeASound();
+        horse.makeASound();
+        human.makeASound();
+        parrot.makeASound();
 
-        if (!cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0() && parrot.staminaIs0()  ) {
-            //кот победил
-            return "Кот победил!";
-        }
-        else if (cat.staminaIs0() && !fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0() && parrot.staminaIs0()  ) {
-            //Рыба победила
-            return "Рыба победила!";
-        }
-        else if (cat.staminaIs0() && fish.staminaIs0() && !horse.staminaIs0() && human.staminaIs0() && parrot.staminaIs0()  ) {
-            //Лошадь победила
-            return "Лошадь победила!";
-        }
-        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && !human.staminaIs0() && parrot.staminaIs0()  ) {
-            //Человек победил
-            return "Человек победил!";
-        }
-        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0() && !parrot.staminaIs0()  ) {
-            //Попугай победил
-            return "Попугай победил!";
-        }
-        else {
-            return "Пока победителя нет, давайте помучаем участников еще раз!";
-        }
+        System.out.println();
     }
+
+
+    public static int existWin() {
+
+        if (!cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 1;
+        }
+
+        else if (cat.staminaIs0() && !fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 2;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && !horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 3;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && !human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 4;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && !parrot.staminaIs0()) {
+            return 5;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 10; //все проиграли
+        }
+
+        else {
+            return 0;
+        }
+
+    }
+
+
+
 
 }

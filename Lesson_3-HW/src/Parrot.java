@@ -9,4 +9,19 @@ public class Parrot extends Animal {
 
     }
 
+    @Override
+    public void makeASound() {
+
+        if (!staminaIs0()) {
+
+            this.stamina = this.stamina + stamPlus;
+            System.out.println(this.specie + " " + this.name + " с радостью начал щебетать, а потом еще и стал" +
+                    " подражать другим участникам, в результате чего прибавил " + stamPlus + "% выносливости");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
 }
