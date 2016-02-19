@@ -22,11 +22,30 @@ public class MainClass {
 
         getInfoAboutAllAnimal();
 
+        try {
+            Thread.sleep(4000); //Задержка в 4 секунды чтобы посмотреть, что сейчас будет
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+
+        System.out.println();
+        System.out.println("Сейчас мы начнем игры! Правила просты: мы будем заставлять участников что-то делать, " +
+        "пока они один за другим не свалятся от усталости.");
+        System.out.println("Останется только один - он и будет победителем! А, возможно, с дистанции сойдут все!");
+
+        try {
+            Thread.sleep(7000); //Задержка в 7 секунд чтобы посмотреть, что сейчас будет
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+
+        System.out.println();
+
         //начало цикла до условия победы
         while (existWin() == 0) {
 
             //генерация вызова одного случайного метода
-            int randNumber = (int) (Math.random() * 4) + 1; // генерируем случайное целое цисло от 1 до 4 (по числу методов)
+            int randNumber = (int) (Math.random() * 6) + 1; // генерируем случайное целое цисло от 1 до 6 (по числу методов)
 
             switch (randNumber) {
                 case 1:
@@ -40,6 +59,12 @@ public class MainClass {
                     break;
                 case 4:
                     makeASoundAllAnimal(); //издать звук
+                    break;
+                case 5:
+                    stopBeAsAParrotAllAnimal(); //перестать попугайничать
+                    break;
+                case 6:
+                    showAnimalDocsAllAnimal(); //показать документ животного
                     break;
 
 
@@ -137,6 +162,30 @@ public class MainClass {
         horse.makeASound();
         human.makeASound();
         parrot.makeASound();
+
+        System.out.println();
+    }
+
+    public static void stopBeAsAParrotAllAnimal() {
+
+        System.out.println("В этот раз всем участникам нужно перестать попугайничать!");
+        cat.stopBeAsAParrot();
+        fish.stopBeAsAParrot();
+        horse.stopBeAsAParrot();
+        human.stopBeAsAParrot();
+        parrot.stopBeAsAParrot();
+
+        System.out.println();
+    }
+
+    public static void showAnimalDocsAllAnimal() {
+
+        System.out.println("В этот раз всем участникам нужно показать удостоверение животного!");
+        cat.showAnimalDocs();
+        fish.showAnimalDocs();
+        horse.showAnimalDocs();
+        human.showAnimalDocs();
+        parrot.showAnimalDocs();
 
         System.out.println();
     }

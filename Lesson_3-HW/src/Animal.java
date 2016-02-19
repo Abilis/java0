@@ -41,7 +41,6 @@ public abstract class Animal {
 
         }
 
-
     public void climbOnHill() {
 
         this.stamina = this.stamina - stamMinus;
@@ -80,6 +79,37 @@ public abstract class Animal {
         if (!this.staminaIs0()) {
 
             System.out.println(this.specie + " " + this.name + " без особого труда издал звук приветствия " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    public void stopBeAsAParrot() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда перестал попугайничать " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    public void showAnimalDocs() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " продемонстрировал удостоверение животного, " +
+                    "почти не нагрягаясь, но выносливость уменьшилась на " +
                     stamMinus + "%");
         }
         else {

@@ -48,6 +48,13 @@ public class Fish extends Animal {
         if (!staminaIs0()) {
 
             this.stamina = this.stamina + stamPlus;
+
+            if (this.stamina > 100) {
+                int overStam = this.stamina - 100;
+                stamPlus = stamPlus - overStam; //чтобы не было сообщения о прибавке выносливости выше 100%
+                this.stamina = 100; //и чтобы она не прибавлялась
+            }
+
             System.out.println("Не зря говорят \"Как рыба в воде\". " + this.specie + " " + this.name +
                     " легко проплыла туда и обратно три раза, да еще и отдохнула, увеличив свою выносливость на " +
                     stamPlus);

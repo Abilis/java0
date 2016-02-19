@@ -1,0 +1,613 @@
+﻿import com.sun.org.apache.xpath.internal.SourceTree;
+
+/**
+ * Created by Abilis on 19.02.2016.
+ */
+public class MainClass {
+
+    //Создаем по 1 объекту каждого класса
+    public static Cat cat = new Cat("кот", "Матроскин", 100);
+    public static Fish fish = new Fish("рыба", "Матильда", 100);
+    public static Horse horse = new Horse("лошадь", "Шустрая кляча", 100);
+    public static Human human = new Human("человек", "Джон Сноу", 100);
+    public static Parrot parrot = new Parrot("попугай", "Иннокентий", 100);
+
+    public static void main(String[] args) {
+
+        double dNumberOfGame = (Math.random() * 100) + 1;
+        int numberOfGame = (int) dNumberOfGame;
+
+        System.out.println("Приветствуем всех на " + numberOfGame + " межвидовых играх \"Полоса препятствий\"! " +
+                "Давайте посмотрим на участников:");
+
+        getInfoAboutAllAnimal();
+
+        try {
+            Thread.sleep(4000); //Задержка в 4 секунды чтобы посмотреть, что сейчас будет
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+
+        System.out.println();
+        System.out.println("Сейчас мы начнем игры! Правила просты: мы будем заставлять участников что-то делать, " +
+        "пока они один за другим не свалятся от усталости.");
+        System.out.println("Останется только один - он и будет победителем! А, возможно, с дистанции сойдут все!");
+
+        try {
+            Thread.sleep(7000); //Задержка в 7 секунд чтобы посмотреть, что сейчас будет
+        } catch (InterruptedException ie) {
+            ie.printStackTrace();
+        }
+
+        System.out.println();
+
+        //начало цикла до условия победы
+        while (existWin() == 0) {
+
+            //генерация вызова одного случайного метода
+            int randNumber = (int) (Math.random() * 6) + 1; // генерируем случайное целое цисло от 1 до 6 (по числу методов)
+
+            switch (randNumber) {
+                case 1:
+                    run100MAllAnimal(); // бег 100 метров
+                    break;
+                case 2:
+                    climbOnHillAllAnimal(); //взобраться на холм
+                    break;
+                case 3:
+                    swimARiverAllAnimal(); //переплыть реку
+                    break;
+                case 4:
+                    makeASoundAllAnimal(); //издать звук
+                    break;
+                case 5:
+                    stopBeAsAParrotAllAnimal(); //перестать попугайничать
+                    break;
+                case 6:
+                    showAnimalDocsAllAnimal(); //показать документ животного
+                    break;
+
+
+            }
+
+
+            getInfoAboutAllAnimal(); // в конце итерации показываем состояние участников
+
+
+            switch (existWin()) {
+
+                case 1:
+                    System.out.println("Победил " + cat.specie + " " + cat.name + "!");
+                    break;
+                case 2:
+                    System.out.println("Победила " + fish.specie + " " + fish.name + "!");
+                    break;
+                case 3:
+                    System.out.println("Победила " + horse.specie + " " + horse.name + "!");
+                    break;
+                case 4:
+                    System.out.println("Победил " + human.specie + " " + human.name + "!");
+                    break;
+                case 5:
+                    System.out.println("Победил " + parrot.specie + " " + parrot.name + "!");
+                    break;
+                case 10:
+                    System.out.println("Все проиграли! На " + numberOfGame + " межвидовых играх" +
+                                        " \"Полоса препятствий\" нет победителя!");
+                    break;
+
+            }
+
+            try {
+                Thread.sleep(2000); //Задержка в 2 секунды в конце каждого цикла, чтобы можно было наблюдать прогресс
+            } catch (InterruptedException ie) {
+                ie.printStackTrace();
+            }
+        } //конец цикла
+
+
+    }
+
+    public static void getInfoAboutAllAnimal() {
+
+        cat.getInfo();
+        fish.getInfo();
+        horse.getInfo();
+        human.getInfo();
+        parrot.getInfo();
+
+        System.out.println();
+
+    }
+
+    public static void run100MAllAnimal() {
+        System.out.println("В этот раз всем участникам нужно пробежать 100 метров!");
+        cat.run100M();
+        fish.run100M();
+        horse.run100M();
+        human.run100M();
+        parrot.run100M();
+
+        System.out.println();
+    }
+
+    public static void climbOnHillAllAnimal() {
+        System.out.println("В этот раз всем учатникам нужно взобраться на холм!");
+        cat.climbOnHill();
+        fish.climbOnHill();
+        horse.climbOnHill();
+        human.climbOnHill();
+        parrot.climbOnHill();
+
+        System.out.println();
+    }
+
+    public static void swimARiverAllAnimal() {
+
+        System.out.println("В этот раз всем участникам нужно переплыть реку!");
+        cat.swimARiver();
+        fish.swimARiver();
+        horse.swimARiver();
+        human.swimARiver();
+        parrot.swimARiver();
+
+        System.out.println();
+    }
+
+    public static void makeASoundAllAnimal() {
+
+        System.out.println("В этот раз всем участникам нужно что-нибудь прокричать!");
+        cat.makeASound();
+        fish.makeASound();
+        horse.makeASound();
+        human.makeASound();
+        parrot.makeASound();
+
+        System.out.println();
+    }
+
+    public static void stopBeAsAParrotAllAnimal() {
+
+        System.out.println("В этот раз всем участникам нужно перестать попугайничать!");
+        cat.stopBeAsAParrot();
+        fish.stopBeAsAParrot();
+        horse.stopBeAsAParrot();
+        human.stopBeAsAParrot();
+        parrot.stopBeAsAParrot();
+
+        System.out.println();
+    }
+
+    public static void showAnimalDocsAllAnimal() {
+
+        System.out.println("В этот раз всем участникам нужно показать удостоверение животного!");
+        cat.showAnimalDocs();
+        fish.showAnimalDocs();
+        horse.showAnimalDocs();
+        human.showAnimalDocs();
+        parrot.showAnimalDocs();
+
+        System.out.println();
+    }
+
+
+    public static int existWin() {
+
+        if (!cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 1;
+        }
+
+        else if (cat.staminaIs0() && !fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 2;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && !horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 3;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && !human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 4;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && !parrot.staminaIs0()) {
+            return 5;
+        }
+
+        else if (cat.staminaIs0() && fish.staminaIs0() && horse.staminaIs0() && human.staminaIs0()
+                && parrot.staminaIs0()) {
+            return 10; //все проиграли
+        }
+
+        else {
+            return 0;
+        }
+
+    }
+
+
+
+
+}
+
+---------------
+/**
+ * Created by Abilis on 19.02.2016.
+ */
+public abstract class Animal {
+
+    protected int stamMinus = (int)(Math.random()*5 + 3); //случайное целое число от 3 до 8 для отнимания
+    protected int stamMinusMany = (int)(Math.random()*5 + 20); //случайное целое число от 20 до 25 для отнимания
+    protected int stamPlus = (int)(Math.random()*4 + 8); //случайное целое число от 8 до 12 для прибавления
+
+    protected String specie;
+    protected String name;
+    protected int stamina;
+
+    public Animal(String specie, String name, int stamina) {
+
+        this.specie = specie;
+        this.name = name;
+        this.stamina = stamina;
+
+    }
+
+    public  void getInfo() {
+        System.out.println("Вид: " + this.specie + ", имя: " + this.name + ", выносливость: " + this.stamina + "%");
+    }
+
+    public void run100M() {
+
+
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
+                                 stamMinus + "%");
+            }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+            }
+
+        }
+
+    public void climbOnHill() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+
+    }
+
+    public void swimARiver() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда преодолел это препятствие, но его выносливость уменьшилась на " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    public void makeASound() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда издал звук приветствия " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    public void stopBeAsAParrot() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " без особого труда перестал попугайничать " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    public void showAnimalDocs() {
+
+        this.stamina = this.stamina - stamMinus;
+
+        if (!this.staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " продемонстрировал удостоверение животного, " +
+                    "почти не нагрягаясь, но выносливость уменьшилась на " +
+                    stamMinus + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+
+    public boolean staminaIs0() {
+        if (this.stamina <= 0) {
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
+}
+
+--------------------
+/**
+ * Created by Abilis on 19.02.2016.
+ */
+public class Cat extends Animal {
+
+    public Cat(String specie, String name, int stamina) {
+
+        super (specie, name, stamina);
+
+    }
+
+    @Override
+    public void swimARiver() {
+
+        this.stamina = this.stamina - stamMinusMany;
+
+        if (!staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " как и все коты не любит плавать." +
+                    " Но задание есть задание. Поэтому, потеряв  " +
+                    stamMinusMany + "% выносливости " + this.name + " все же выполнил задание!");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    @Override
+    public void stopBeAsAParrot() {
+
+        if (!staminaIs0()) {
+
+            this.stamina = this.stamina + stamPlus;
+
+            if (this.stamina > 100) {
+                int overStam = this.stamina - 100;
+                stamPlus = stamPlus - overStam; //чтобы не было сообщения о прибавке выносливости выше 100%
+                this.stamina = 100; //и чтобы она не прибавлялась
+            }
+
+            System.out.println(this.specie + " " + this.name + " радостно мурлыча, широко улыбается своей довольной мордой" +
+                    " Для него перестать попугайничать - раз плюнуть. Да еще и " + stamPlus + "% выносливости прибавилось");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+
+
+
+}
+
+------------
+/**
+ * Created by Abilis on 19.02.2016.
+ */
+public class Fish extends Animal {
+
+    public Fish(String specie, String name, int stamina) {
+        super(specie, name, stamina);
+
+    }
+
+    @Override
+    public void run100M() {
+
+        this.stamina = this.stamina - stamMinusMany;
+
+        if (!staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " с трудом перебирая плавниками" +
+                    " преодолела сухопутную часть, и выносливость уменьшилась на " +
+                    stamMinusMany + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратила все силы и сошла с дистанции!");
+        }
+    }
+
+    @Override
+    public void climbOnHill() {
+
+        this.stamina = this.stamina - stamMinusMany;
+
+        if (!staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " с трудом перебирая плавниками" +
+                    " все же взобралась на гору, но ее выносливость уменьшилась на " +
+                    stamMinusMany + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратила все силы и сошла с дистанции!");
+        }
+    }
+
+    @Override
+    public void swimARiver() {
+
+        if (!staminaIs0()) {
+
+            this.stamina = this.stamina + stamPlus;
+
+            if (this.stamina > 100) {
+                int overStam = this.stamina - 100;
+                stamPlus = stamPlus - overStam; //чтобы не было сообщения о прибавке выносливости выше 100%
+                this.stamina = 100; //и чтобы она не прибавлялась
+            }
+
+            System.out.println("Не зря говорят \"Как рыба в воде\". " + this.specie + " " + this.name +
+                    " легко проплыла туда и обратно три раза, да еще и отдохнула, увеличив свою выносливость на " +
+                    stamPlus);
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратила все силы и сошла с дистанции!");
+        }
+    }
+
+    @Override
+    public void makeASound() {
+
+        this.stamina = this.stamina - stamMinusMany;
+
+        if (!staminaIs0()) {
+
+            System.out.println("К сожалению, " + this.specie + " " + this.name + " не смогла ничего издать," +
+                    " поэтому из-за острой неуверенности в своих силах потеряла " +
+                    stamMinusMany + "% выносливости");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратила все силы и сошла с дистанции!");
+        }
+    }
+
+}
+-------------------
+/**
+ * Created by Abilis on 19.02.2016.
+ */
+public class Horse extends Animal {
+
+    public Horse(String specie, String name, int stamina) {
+
+        super(specie, name, stamina);
+
+    }
+
+}
+
+----------------
+/**
+ * Created by Abilis on 19.02.2016.
+ */
+public class Human extends Animal {
+
+    public Human(String specie, String name, int stamina) {
+
+        super(specie, name, stamina);
+
+    }
+
+    @Override
+    public void showAnimalDocs() {
+
+        this.stamina = this.stamina - stamMinusMany;
+
+        if (!staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " не понимает, что делать." +
+                    " У него нет документов животного. В результате сильных душевных страданий" +
+                    " выносливость уменьшается на " +
+                    stamMinusMany + "%");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+}
+
+---------------------
+/**
+ * Created by Abilis on 19.02.2016.
+ */
+public class Parrot extends Animal {
+
+    public Parrot(String specie, String name, int stamina) {
+
+        super(specie, name, stamina);
+
+    }
+
+    @Override
+    public void makeASound() {
+
+        if (!staminaIs0()) {
+
+            this.stamina = this.stamina + stamPlus;
+
+            if (this.stamina > 100) {
+                int overStam = this.stamina - 100;
+                stamPlus = stamPlus - overStam; //чтобы не было сообщения о прибавке выносливости выше 100%
+                this.stamina = 100; //и чтобы она не прибавлялась
+            }
+
+            System.out.println(this.specie + " " + this.name + " с радостью начал щебетать, а потом еще и стал" +
+                    " подражать другим участникам, в результате чего прибавил " + stamPlus + "% выносливости");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+    @Override
+    public void stopBeAsAParrot() {
+
+        this.stamina = this.stamina - stamMinusMany;
+
+        if (!staminaIs0()) {
+
+            System.out.println(this.specie + " " + this.name + " неудомевает." +
+                    " Как ему можно перестать попугайничать, если он попугай?" +
+                    " Пришлось отказаться от части своей выносливости (-" +
+                    stamMinusMany + "%)");
+        }
+        else {
+            this.stamina = 0;
+            System.out.println(this.specie + " " + this.name + " растратил все силы и сошел с дистанции!");
+        }
+    }
+
+
+
+}
