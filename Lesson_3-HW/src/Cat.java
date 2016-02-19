@@ -9,6 +9,16 @@ public class Cat extends Animal {
 
     }
 
+    @Override
+    public void swimARiver() {
+
+        this.stamina = this.stamina - stamMinusMany;
+        System.out.println(this.specie + " " + this.name + " как и все коты не любит плавать." +
+                " Но задание есть задание. Поэтому, потеряв  " +
+                stamMinusMany + "% выносливости " + this.name + " все же выполнил задание!");
+
+    }
+
 
 
 
