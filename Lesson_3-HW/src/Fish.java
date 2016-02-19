@@ -9,9 +9,10 @@ public class Fish extends Animal {
 
         }
 
+        @Override
         public void run100M() {
 
-            int stamMinus = (int)(Math.random()*5 + 20); //случайно число от 20 до 25
+            int stamMinus = (int)(Math.random()*5 + 20); //случайное число от 20 до 25
 
             this.stamina = this.stamina - stamMinus;
             System.out.println(this.specie + " " + this.name + " с трудом перебирая плавниками" +
