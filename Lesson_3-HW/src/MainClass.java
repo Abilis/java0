@@ -12,6 +12,8 @@ public class MainClass {
     public static Human human = new Human("человек", "Джон Сноу", 100);
     public static Parrot parrot = new Parrot("попугай", "Иннокентий", 100);
 
+    public static int numOfRounds = 0;
+
     public static void main(String[] args) {
 
         double dNumberOfGame = (Math.random() * 100) + 1;
@@ -43,6 +45,8 @@ public class MainClass {
 
         //начало цикла до условия победы
         while (existWin() == 0) {
+
+            numOfRounds++;
 
             //генерация вызова одного случайного метода
             int randNumber = (int) (Math.random() * 6) + 1; // генерируем случайное целое цисло от 1 до 6 (по числу методов)
@@ -105,7 +109,7 @@ public class MainClass {
             }
         } //конец цикла
 
-
+        System.out.println("Игры заняли " + numOfRounds + " раундов");
     }
 
     public static void getInfoAboutAllAnimal() {
